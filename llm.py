@@ -1,9 +1,9 @@
 from ollama import chat
 from ollama import ChatResponse
+import json
 
-TOOLS = ["open_app", "close_app", "search_browser"]
-
-def llm_process(command):
+# def llm_process(command: str, tools: list) -> json:
+def llm_process(command: str) -> json:
     schema = {
         "type": "object",
         "properties": {
