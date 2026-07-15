@@ -1,10 +1,11 @@
 from faster_whisper import WhisperModel
 import scipy.io.wavfile as wav
 import sounddevice as sd
+import time
 
 def listen() -> None:
     fs = 16000
-    duration = 5.0
+    duration = 10.0
     print("Listening: ")
     # records from system
     myrecording = sd.rec(int(duration * fs), samplerate=fs, channels=1)
@@ -16,6 +17,6 @@ def transcribe(audio) -> str:
     listen()
     # loads text into faster-whisper model and returns text
     model = WhisperModel("small", device="cpu", compute_type="int8")
-    segments, info = model.transcribe(audio, beam_size=5)
+    segments, info = model.transcribe(audio, beam_size=3)
     for segment in segments:
         return segment.text
