@@ -1,6 +1,6 @@
-from tools import TOOLS
-from listen import transcribe
-from llm import llm_process
+from main.tools import TOOLS
+from main.listen import transcribe
+from main.llm import llm_process
 import time
 
 
