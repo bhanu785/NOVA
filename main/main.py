@@ -1,8 +1,12 @@
-from main.tools import TOOLS
-from main.listen import transcribe
-from main.llm import llm_process
+from tools import TOOLS
+from listen import transcribe
+from llm import llm_process
 import time
+import os
 
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(current_dir)
+recording_file = os.path.join(project_root, "audio", "recording.wav")
 
 tools = {
     "open_app": TOOLS.open_app,
@@ -17,7 +21,7 @@ tools = {
 }
 
 start = time.perf_counter()
-command = transcribe("audio/recording.wav")
+command = transcribe(recording_file)
 print(command)
 end = time.perf_counter()
 print(start - end)

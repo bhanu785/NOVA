@@ -1,6 +1,6 @@
 from ollama import chat
 from ollama import ChatResponse
-from main.tools import create_tool
+from tools import create_tool
 import json
 
 # def llm_process(command: str, tools: list) -> json:
