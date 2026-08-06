@@ -1,7 +1,7 @@
 from faster_whisper import WhisperModel
 import scipy.io.wavfile as wav
 import sounddevice as sd
-from openwakeword.model import Model
+# from openwakeword.model import Model
 import os
 
 current_dir = os.path.dirname(os.path.abspath(__file__))

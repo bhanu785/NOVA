@@ -1,7 +1,0 @@
-ollama
-openai-whisper
-piper-tts
-pyautogui
-openwakeword
-mss
-sounddevice

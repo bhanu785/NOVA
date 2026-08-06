@@ -46,7 +46,7 @@ class TOOLS:
             if app.activationPolicy() == NSApplicationActivationPolicyRegular
         ]
 
-    # Uses applescript and subprocess class to return the open tab in each of the browser windws (ex: Safari, Chrome)
+    # Uses applescript and subprocess module to return the open tab in each of the browser windws (ex: Safari, Chrome)
     def get_browser_windows(app_name: str) -> list[str]:
         if app_name == "Safari":
             script = f'''
