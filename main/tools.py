@@ -1,10 +1,11 @@
 import subprocess, time, webbrowser, wave
 import pyautogui as pag
-from piper import PiperVoice
+from piper import PiperVoice, SynthesisConfig
 import sounddevice as sd
 import soundfile as sf
 from AppKit import NSWorkspace, NSApplicationActivationPolicyRegular
 from pathlib import Path
+import os
 
 class TOOLS:
     def open_app(app: str) -> None:
@@ -17,10 +18,18 @@ class TOOLS:
     #     webbrowser.open(query)
 
     def speak(text: str) -> None:
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        project_root = os.path.dirname(current_dir)
+        speak_file = os.path.join(project_root, "audio", "test.wav")
         voice = PiperVoice.load("/Users/bhanukoushikmakkapati/Desktop/NOVA/audio/en_US-ryan-medium.onnx")
-        with wave.open("audio/test.wav", "wb") as wav_file:
-            voice.synthesize_wav(text, wav_file)
-        data, fs = sf.read("audio/test.wav")
+        syn_config = SynthesisConfig(
+            length_scale=1.5,
+            noise_scale=0.667,
+            noise_w_scale=0.8,
+        )
+        with wave.open(speak_file, "wb") as wav_file:
+            voice.synthesize_wav(text, wav_file, syn_config=syn_config)
+        data, fs = sf.read(speak_file)
         sd.play(data, fs)
         sd.wait()
 

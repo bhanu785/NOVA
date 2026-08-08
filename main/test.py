@@ -1,21 +1,19 @@
-# # This file was created for the sole purpose of testing functions from tools.py DELETE LATER
-# from tools import TOOLS
+# # This file was created for the sole purpose of testing stuff DELETE LATER
 import sounddevice as sd
 import numpy as np
 from openwakeword.model import Model
 import os, time
-# import scipy.io.wavfile as wav
 from faster_whisper import WhisperModel
-# from tools import TOOLS
+from tools import TOOLS
 
 RATE = 16000
 CHUNK = 1280
-COOLDOWN_SECS = 2.0
+COOLDOWN_SECS = 10.0
 THRESHOLD = 1160
 SILENCE_THRESHOLD = 21
 last_trigger_time = 0.0
 wwdetect = True
-talking = True
+talking = False
 chunks = []
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -38,6 +36,7 @@ print(f"Listening for '{model_key}...'")
 
 # function to start the audio capture and return numpy array
 def ww_stream_and_transcribe():
+    global wwdetect, talking
     silence_duration = 0
     with sd.InputStream(samplerate=RATE, channels=1, dtype='int16', blocksize=CHUNK) as stream:
         while wwdetect == True:
@@ -57,6 +56,9 @@ def ww_stream_and_transcribe():
                 transcribed = ww_transcribe(chunks)
                 print(transcribed)
                 chunks.clear()
+                wwdetect = True
+                talking = False
+                # return transcribed
                 break
             time.sleep(0.1)
             
@@ -73,14 +75,17 @@ while wwdetect == True:
         for sd_buffer in ww_stream_and_transcribe():
             prediction = ww_model.predict(sd_buffer)
             score = prediction.get(model_key, 0.0)
-            if score > 0.35:
+            if score > 0.5:
                 current_time = time.time()
                 if current_time - last_trigger_time > COOLDOWN_SECS:
                     print(f"Hey NOVA detected! Score: {score:.2f}")
-                    # TOOLS.speak("Listening")
+                    TOOLS.speak("Yes sir")
+                    last_trigger_time = current_time
                     wwdetect = False
+                    talking = True
                 else:
                     pass
     except KeyboardInterrupt:
         print("\nStopping...")
+        break
 
