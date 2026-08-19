@@ -92,7 +92,7 @@ def llm_process(command: str) -> list:
         ),
         create_tool(
             "use_shortcut",
-            "performs a shortcut using pyautogui module",
+            "performs a MacOS hotkey shortcut",
             {
 
             "args": {
@@ -181,11 +181,9 @@ def llm_process(command: str) -> list:
 
             Use the available tools to complete the user's request(Call him SIR ALL THE TIME).
 
-            Call only the tools that are necessary (use speak most of the time, you're an AI agent).
+            Call only the tools that are necessary (USE THE SPEAK TOOL FOR ALL REQUESTS, you're an AI agent).
 
             Never invent tool arguments.
-
-            Do not perform extended reasoning.
 
             Choose the correct tool(s) as QUICKLY AS POSSIBLE.
 

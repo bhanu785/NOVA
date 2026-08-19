@@ -17,3 +17,4 @@ from tools import TOOLS
 #             time.sleep(0.1)
 # except KeyboardInterrupt:
 #     print("Stopped listening.")
+print(TOOLS.get_all_window_info())

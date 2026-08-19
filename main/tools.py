@@ -14,16 +14,13 @@ class TOOLS:
     def close_app(app: str) -> None:
         subprocess.Popen(["killall", app])
 
-    # def search_browser(query: str) -> None:
-    #     webbrowser.open(query)
-
     def speak(text: str) -> None:
         current_dir = os.path.dirname(os.path.abspath(__file__))
         project_root = os.path.dirname(current_dir)
         speak_file = os.path.join(project_root, "audio", "test.wav")
         voice = PiperVoice.load("/Users/bhanukoushikmakkapati/Desktop/NOVA/audio/en_US-ryan-medium.onnx")
         syn_config = SynthesisConfig(
-            length_scale=1.5,
+            length_scale=1.3,
             noise_scale=0.667,
             noise_w_scale=0.8,
         )
