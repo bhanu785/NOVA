@@ -15,7 +15,7 @@ Capable of the following:
 
 ### Tech Stack
 
-1. <a href="https://github.com/dscripka/openWakeWord" target="_blank">openWakeWord</a> - Wake Word detection
+1. <a href="https://github.com/dscripka/openWakeWord">openWakeWord</a> - Wake Word detection
 2. <a href="https://python-sounddevice.readthedocs.io/en/0.5.3/index.html">sounddevice</a> - audio streaming
 3. <a href="https://github.com/SYSTRAN/faster-whisper">faster-whisper</a> - STT
 4. <a href="https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/API_PYTHON.md">Piper</a> - TTS
@@ -24,7 +24,8 @@ Capable of the following:
 7. <a href="https://pypi.org/project/soundfile/">soundfile</a> - Reading audio files for TTS
 8. <a href="https://pyautogui.readthedocs.io/en/latest/">pyautogui</a> - Automating mouse and keyboard actions
 9. <a href="https://docs.python.org/3/library/pathlib.html">pathlib</a> - Making files tool
-10. Python built-in modules
+10. <a href="https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html">applescript</a> - controlling macOS application through system commands
+11. Python built-in modules
     1. os - For paths
     2. time - For testing
     3. wave - Opening audio files for TTS
