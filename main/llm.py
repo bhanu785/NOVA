@@ -1,10 +1,10 @@
 from ollama import chat
 from ollama import ChatResponse
 from tools import create_tool
-import json
 
-# def llm_process(command: str, tools: list) -> json:
+# processes user command with ollama qwen3:8b model and returns tool calls
 def llm_process(command: str) -> list:
+    # all tools and descriptions from tools.py
     tool = [
         create_tool(
             "open_app",

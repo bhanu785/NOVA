@@ -3,6 +3,7 @@ import sounddevice as sd
 import numpy as np
 import time
 from tools import TOOLS
+import os
 # RATE = 16000
 # CHUNK = 1280
 # THRESHOLD = 1160 # threshold for volume detection
@@ -17,4 +18,8 @@ from tools import TOOLS
 #             time.sleep(0.1)
 # except KeyboardInterrupt:
 #     print("Stopped listening.")
-print(TOOLS.get_all_window_info())
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(current_dir)
+print(current_dir)
+print(project_root)
+print(os.path.join(project_root, "audio", "hey_nova.onnx"))

@@ -1,12 +1,12 @@
-import subprocess, time, webbrowser, wave
+import subprocess, time, webbrowser, wave, os
 import pyautogui as pag
 from piper import PiperVoice, SynthesisConfig
 import sounddevice as sd
 import soundfile as sf
 from AppKit import NSWorkspace, NSApplicationActivationPolicyRegular
 from pathlib import Path
-import os
 
+# static class with all tools for llm use
 class TOOLS:
     def open_app(app: str) -> None:
         subprocess.Popen(["open", "-a", app])
@@ -14,11 +14,12 @@ class TOOLS:
     def close_app(app: str) -> None:
         subprocess.Popen(["killall", app])
 
+    # uses tts with Piper 
     def speak(text: str) -> None:
         current_dir = os.path.dirname(os.path.abspath(__file__))
         project_root = os.path.dirname(current_dir)
         speak_file = os.path.join(project_root, "audio", "test.wav")
-        voice = PiperVoice.load("/Users/bhanukoushikmakkapati/Desktop/NOVA/audio/en_US-ryan-medium.onnx")
+        voice = PiperVoice.load(os.path.join(project_root, "audio", "en_US-ryan-medium.onnx"))
         syn_config = SynthesisConfig(
             length_scale=1.3,
             noise_scale=0.667,
@@ -31,9 +32,10 @@ class TOOLS:
         sd.wait()
 
     def type(text: str, duration: float = 0.07) -> None:
-        time.sleep(3) # only for enough time to switch tabs for testing take out later (or not)
+        time.sleep(3) # only for enough time to switch tabs for testing take out later
         pag.write(text, interval=duration)
 
+    # uses shortcut
     def use_shortcut(args: list) -> None:
         hotkeys = args
 

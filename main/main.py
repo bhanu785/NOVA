@@ -3,6 +3,7 @@ from listen import listen
 from llm import llm_process
 from openwakeword.model import Model
 
+# dictionary of all tools
 tools = {
     "open_app": TOOLS.open_app,
     "close_app": TOOLS.close_app,
@@ -15,9 +16,11 @@ tools = {
     "make_file": TOOLS.make_file
 }
 
+# main loop, listens for command and sends to llm for processing, then executes the tools returned by llm
 while True:
     try:
         command = listen()
+        # had to add this tts returned thank you sometimes and was messing with the loop
         if command == "Thank you":
             continue
         elif command:
